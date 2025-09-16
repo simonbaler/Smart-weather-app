@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart Weather Assistant 🌤</title>
+
+  <!-- Weather Icons (lightweight) + Font Awesome for UI icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css" integrity="" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="" crossorigin="anonymous" />
+
+  <!-- Main stylesheet (next file) -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Meta for PWA friendliness (optional later) -->
+  <meta name="theme-color" content="#317EFB"/>
+<!-- Add this inside your <header class="app-header">, next to controls -->
+<div class="header-links">
+  <a href="about.html" class="link-btn" title="About the Project">About</a>
+</div>
+
+</head>
+<body id="app">
+
+  <!-- App container -->
+  <div class="weather-app" role="application" aria-label="Smart Weather Assistant">
+
+    <!-- Header -->
+    <header class="app-header" role="banner">
+      <div class="brand">
+        <h1 class="app-title">Smart Weather Assistant</h1>
+        <p class="tagline">Actionable local weather — not just numbers</p>
+      </div>
+
+      <!-- Controls: unit toggle, voice, share, settings -->
+      <div class="controls" role="group" aria-label="App controls">
+        <button id="unitToggle" class="control-btn" title="Toggle °C / °F" aria-pressed="false">°C / °F</button>
+        <button id="voiceToggle" class="control-btn" title="Play spoken forecast" aria-pressed="false" aria-label="Voice forecast toggle">
+          <i class="fas fa-robot" aria-hidden="true"></i>
+        </button>
+        <button id="shareBtn" class="control-btn" title="Share forecast" aria-label="Share forecast">
+          <i class="fas fa-share-alt" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="main" role="main">
+
+      <!-- Search area -->
+      <section class="search-panel" aria-labelledby="search-heading">
+        <h2 id="search-heading" class="sr-only">Search location</h2>
+
+        <div class="search-row">
+          <!-- Input supports city, district, pincode, lat,lng -->
+          <input id="locationInput" list="recentSearches" type="search" inputmode="search"
+                 placeholder="Enter city, district, area, or pincode (e.g. 560001 or Vizianagaram)"
+                 aria-label="Location input" autocomplete="on" />
+
+          <datalist id="recentSearches">
+            <!-- populated by JS from localStorage -->
+          </datalist>
+
+          <button id="searchBtn" class="primary-btn" aria-label="Search weather">🔍 Search</button>
+        </div>
+
+        <div class="search-actions">
+          <button id="geoBtn" class="secondary-btn" aria-label="Use my current location">📍 Use My Location</button>
+          <button id="clearHistoryBtn" class="link-btn" aria-label="Clear recent searches">Clear history</button>
+        </div>
+      </section>
+
+      <!-- Result / Card -->
+      <section class="result-panel" aria-live="polite" aria-atomic="true">
+        <article class="weather-card" id="weatherCard" hidden>
+
+          <!-- Top row: icon + temp -->
+          <div class="weather-top">
+            <div class="icon-wrap" aria-hidden="true">
+              <!-- JS will toggle classes like "wi wi-day-sunny" -->
+              <i id="weatherIcon" class="wi wi-na big-icon"></i>
+            </div>
+
+            <div class="temp-wrap">
+              <div id="temperature" class="temperature" aria-live="polite">--°</div>
+              <div id="condText" class="condition-text">--</div>
+              <div id="locationName" class="location-name">--</div>
+            </div>
+          </div>
+
+          <!-- Middle: metrics -->
+          <div class="weather-metrics" role="list">
+            <div class="metric" role="listitem">
+              <label>Feels</label>
+              <div id="feelsLike">--</div>
+            </div>
+
+            <div class="metric" role="listitem">
+              <label>Humidity</label>
+              <div id="humidity">--</div>
+            </div>
+
+            <div class="metric" role="listitem">
+              <label>Wind</label>
+              <div id="wind">--</div>
+            </div>
+
+            <div class="metric" role="listitem">
+              <label>AQI</label>
+              <div id="aqi">--</div>
+            </div>
+          </div>
+
+          <!-- Time / update -->
+          <div class="meta-row">
+            <div id="localTime" class="local-time">Local time: --</div>
+            <div id="lastUpdated" class="last-updated">Last update: --</div>
+          </div>
+
+          <!-- Actionable advice cards (mapped from conditions) -->
+          <div id="adviceCards" class="advice-cards" aria-live="polite">
+            <!-- JS fills these: umbrella, heat, cold, wind, pollen, travel -->
+          </div>
+
+          <!-- Progressive details area -->
+          <div class="details-row">
+            <button id="toggleDetailsBtn" class="detail-toggle" aria-expanded="false">Show details</button>
+            <div id="detailsPanel" class="details-panel" hidden>
+              <!-- JS will populate: pressure, UV, visibility, precip, etc. -->
+              <ul id="detailsList" class="details-list" aria-hidden="true"></ul>
+            </div>
+          </div>
+
+          <!-- Nowcast / Next-hours preview -->
+          <div class="nowcast" aria-live="polite">
+            <h3 class="nowcast-title">Nowcast & next 3 hours</h3>
+            <div id="nowcastTimeline" class="nowcast-timeline">
+              <!-- JS will populate minute-by-minute or hourly tiles -->
+            </div>
+            <button id="refreshBtn" class="small-btn" title="Refresh data">↻ Refresh</button>
+          </div>
+
+          <!-- Utility actions -->
+          <div class="card-actions">
+            <button id="copyBtn" class="link-btn" title="Copy forecast">Copy</button>
+            <button id="openMapBtn" class="link-btn" title="Open in map">Open map</button>
+          </div>
+
+        </article>
+
+        <!-- Error & loader -->
+        <div id="loader" class="loader" hidden aria-hidden="true" role="status" aria-live="polite">
+          <div class="spinner" aria-hidden="true"></div>
+          <div class="loader-text">Fetching weather…</div>
+        </div>
+
+        <div id="errorBox" class="error-box" role="alert" hidden></div>
+
+      </section>
+
+      <!-- Sidebar: recent searches + tips (mobile-first placed below) -->
+      <aside class="side-panel" aria-labelledby="recent-heading">
+        <h4 id="recent-heading">Recent searches</h4>
+        <ul id="recentList" class="recent-list" aria-live="polite">
+          <!-- Filled by JS -->
+        </ul>
+
+        <h4>Quick tips</h4>
+        <ul class="tips-list">
+          <li>Type pincode (e.g. 560001) or "lat,lng" (e.g. 12.97,77.59)</li>
+          <li>Tap 📍 to detect your current location</li>
+          <li>Use Share to send the forecast to friends</li>
+        </ul>
+      </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer" role="contentinfo">
+      <small>Built for humans — actionable, local, and accessible. © 2025</small>
+      <a href="README.md" class="readme-link">README</a>
+    </footer>
+  </div>
+
+  <!-- Hidden accessibility live area for screen-readers (keeps visual layout clean) -->
+  <div id="srLive" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Script (will be provided as js/script.js) -->
+  <script src="js/script.js" defer></script>
+</body>
+</html>

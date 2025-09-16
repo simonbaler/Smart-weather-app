@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - Smart Weather Assistant</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+/* 🌤 Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #222;
+  padding: 20px;
+}
+
+/* About Container */
+.about-container {
+  width: 100%;
+  max-width: 550px;
+  padding: 35px 30px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.8s ease;
+  text-align: left;
+  color: #fff;
+}
+
+/* Headings */
+.about-container h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.about-container h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffb347;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Paragraphs */
+.about-container p {
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+/* Info List */
+.info-list {
+  list-style: none;
+  padding-left: 0;
+}
+.info-list li {
+  margin: 8px 0;
+  font-size: 1rem;
+  position: relative;
+  padding-left: 28px;
+}
+.info-list li::before {
+  content: "\f007";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  left: 0;
+  color: #ffb347;
+}
+
+/* Links */
+a {
+  color: #fff;
+  text-decoration: underline;
+}
+a:hover {
+  color: #ff6a00;
+}
+
+/* Back Button */
+.back-btn {
+  display: inline-block;
+  margin-top: 25px;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .about-container {
+    padding: 25px 20px;
+  }
+  .about-container h1 {
+    font-size: 1.7rem;
+  }
+  .about-container h2 {
+    font-size: 1.1rem;
+  }
+}
+/* ------------------ New: About Button on Main Page ------------------ */
+.about-btn {
+  /* This is the key. 'position: fixed;' locks the button
+     to the viewport, so it stays in place even when you scroll. */
+  position: fixed;
+  top: 20px; /* Positions it 20px from the top of the viewport */
+  right: 20px; /* Positions it 20px from the right of the viewport */
+  
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  z-index: 1000; /* Ensures the button is on top of other content */
+}
+
+.about-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+/* ------------------ Updated: About Page Styles ------------------ */
+
+/* This targets the body only when the about-page class is present.
+   It removes the centering styles and aligns the content to the top. */
+.about-page-body {
+  align-items: flex-start; /* Aligns content to the top */
+  justify-content: center; /* Keeps horizontal centering */
+}
+
+/* We'll use a new class for the container to align it properly on the page */
+.about-container {
+  margin-top: 50px; /* Gives a nice space at the top so the content isn't flush with the edge */
+  text-align: left;
+}
+</style>
+</head>
+<body>
+<div class="about-container">
+  <h1>About Smart Weather Assistant</h1>
+
+  <h2>Author Info</h2>
+  <ul class="info-list">
+    <li>Name: Simon Baler</li>
+    <li>Email: <a href="mailto:simonbaler21@gmail.com">simonbaler21@gmail.com</a></li>
+    <li>Contact: 9392867166</li>
+    <li>Location: Hyderabad, Telangana, India</li>
+    <li>College: Siddhartha Institute of Science and Technology, near Narapally, Ghatkesar</li>
+  </ul>
+
+  <h2>Main Motive of this Project</h2>
+  <p>
+    The Smart Weather Assistant was built to provide users with <strong>actionable, real-time, hyper-local weather information</strong>.
+    Unlike standard apps that only show numbers, this assistant gives insights and advice on weather conditions such as
+    heat, cold, rain, wind, air quality, and pollen, helping users make informed daily decisions.
+  </p>
+
+  <h2>Features Overview</h2>
+  <p>
+    Users can search for locations by city, district, pincode, or coordinates, get current conditions, forecasts, AQI, and actionable advice.
+    Voice support, unit toggling (°C / °F), and location detection make it more user-friendly. All interactions are designed to be
+    accessible, intuitive, and visually appealing.
+  </p>
+
+  <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+</div>
+</body>
+</html>

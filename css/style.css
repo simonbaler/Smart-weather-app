@@ -1,0 +1,338 @@
+/* 🌤 Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #222;
+  padding: 20px;
+  transition: background 0.4s ease;
+}
+
+/* Main App Card */
+.weather-app {
+  width: 100%;
+  max-width: 550px;
+  padding: 35px 30px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.8s ease;
+  text-align: center;
+}
+
+/* Header */
+.app-header {
+  margin-bottom: 25px;
+}
+.app-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.tagline {
+  font-size: 0.95rem;
+  opacity: 0.75;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+.control-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 12px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Search Box */
+.search-panel {
+  margin-bottom: 20px;
+}
+.search-row {
+  display: flex;
+  gap: 10px;
+}
+.search-row input {
+  flex: 1;
+  padding: 16px;
+  border-radius: 14px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+.primary-btn {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+.secondary-btn {
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.secondary-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Weather Card */
+.weather-card {
+  margin-top: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 25px 20px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.weather-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+.big-icon {
+  font-size: 72px;
+  color: #fff;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+.temperature {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+.condition-text {
+  font-size: 1.2rem;
+  margin-top: 4px;
+  text-transform: capitalize;
+}
+.location-name {
+  font-size: 1rem;
+  opacity: 0.85;
+  margin-top: 3px;
+}
+
+/* Metrics */
+.weather-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 18px 0;
+}
+.metric {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.metric label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 3px;
+}
+
+/* Advice Cards */
+.advice-cards {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.advice-card {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 14px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+}
+.advice-card i {
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+/* Loader */
+.loader {
+  margin-top: 25px;
+  text-align: center;
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255,255,255,0.3);
+  border-top: 4px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .weather-app {
+    padding: 25px 20px;
+  }
+  .temperature {
+    font-size: 2.5rem;
+  }
+  .big-icon {
+    font-size: 60px;
+  }
+}
+/* 🌤 About Page */
+.about-container {
+  width: 100%;
+  max-width: 550px;
+  padding: 35px 30px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.8s ease;
+  text-align: left;
+  color: #fff;
+  margin: auto;
+}
+.about-container h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.about-container h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffb347;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.about-container p {
+  margin: 8px 0;
+  line-height: 1.6;
+}
+.info-list {
+  list-style: none;
+  padding-left: 0;
+}
+.info-list li {
+  margin: 8px 0;
+  font-size: 1rem;
+  position: relative;
+  padding-left: 28px;
+}
+.info-list li::before {
+  content: "\f007";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  left: 0;
+  color: #ffb347;
+}
+a {
+  color: #fff;
+  text-decoration: underline;
+}
+a:hover {
+  color: #ff6a00;
+}
+.back-btn {
+  display: inline-block;
+  margin-top: 25px;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+/* ------------------ New: About Button on Main Page ------------------ */
+.about-btn {
+  /* This is the key. 'position: fixed;' locks the button
+     to the viewport, so it stays in place even when you scroll. */
+  position: fixed;
+  top: 20px; /* Positions it 20px from the top of the viewport */
+  right: 20px; /* Positions it 20px from the right of the viewport */
+  
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  z-index: 1000; /* Ensures the button is on top of other content */
+}
+
+.about-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+/* ------------------ Updated: About Page Styles ------------------ */
+
+/* This targets the body only when the about-page class is present.
+   It removes the centering styles and aligns the content to the top. */
+.about-page-body {
+  align-items: flex-start; /* Aligns content to the top */
+  justify-content: center; /* Keeps horizontal centering */
+}
+
+/* We'll use a new class for the container to align it properly on the page */
+.about-container {
+  margin-top: 50px; /* Gives a nice space at the top so the content isn't flush with the edge */
+  text-align: left;
+}
